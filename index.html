@@ -996,6 +996,7 @@ async function fazerLogin() {
     const data = await r.json();
     if (data.ok) {
       usuario = { id: data.id, nome: data.nome, admin: data.admin, pin: pinAtual };
+      localStorage.setItem('bolao_usuario', JSON.stringify(usuario));
       entrar();
     } else {
       erro.textContent = 'ID ou PIN incorreto. Tente novamente.';
@@ -1426,6 +1427,7 @@ function toast(msg, tipo) {
 }
 
 document.getElementById('btn-sair').addEventListener('click', () => {
+  localStorage.removeItem('bolao_usuario');
   usuario = null; pinAtual = ''; meusPalpites = {}; resultados = {};
   palpitesAlheios = {}; palpitesModificados.clear();
   document.getElementById('app').style.display = 'none';
@@ -1433,6 +1435,11 @@ document.getElementById('btn-sair').addEventListener('click', () => {
   document.getElementById('campo-id').value = '';
   atualizarDots();
 });
+  // Login automático se já houver sessão salva
+const sessaoSalva = localStorage.getItem('bolao_usuario');
+if (sessaoSalva) {
+  usuario = JSON.parse(sessaoSalva);
+  entrar();
 </script>
 </body>
 </html>

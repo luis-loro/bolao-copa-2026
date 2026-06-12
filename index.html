@@ -1304,7 +1304,8 @@ document.getElementById('btn-salvar-dia').addEventListener('click', async () => 
     const h = ph.value;
     const a = pa.value;
     if (h === '' || a === '') continue;
-    const r = await api('salvar_palpite', { jogo_id, h: Number(h), a: Number(a) });
+    const jogoObj = DAYS.flatMap(d => d.matches).find(j => j.id === jogo_id);
+const r = await api('salvar_palpite', { jogo_id, h: Number(h), a: Number(a), kickoff: jogoObj.ko });
     if (r.ok) {
       ok++;
       meusPalpites[jogo_id] = { h: Number(h), a: Number(a) };

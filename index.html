@@ -1772,8 +1772,8 @@ async function renderizarEspeciais() {
     const card = document.createElement('div');
     card.className = 'card-jogador-esp' + (artilheiroEsp === jog.nome ? ' selecionado' : '');
     card.innerHTML = `
-      <img src="${jog.foto}" alt="${jog.nome}" onerror="this.style.background='#333';this.style.height='100px'">
-      <div class="card-jogador-esp-info">
+      <div style="padding:16px 8px;text-align:center">
+        <img src="https://flagcdn.com/w80/${jog.flag}.png" alt="${jog.pais}" style="width:48px;height:32px;object-fit:cover;border-radius:4px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto">
         <div class="card-jogador-esp-nome">${jog.nome}</div>
         <div class="card-jogador-esp-pais">${jog.pais}</div>
       </div>`;

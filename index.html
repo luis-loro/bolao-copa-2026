@@ -704,6 +704,166 @@
     .input-placar { width: 40px; height: 40px; font-size: 1.3rem; }
     .bandeira { width: 26px; height: 18px; }
   }
+
+  /* ── ESPECIAIS ── */
+  #tela-especiais { display: none; padding: 1rem; max-width: 680px; margin: 0 auto; width: 100%; }
+
+  .especiais-titulo {
+    font-family: var(--fonte-display);
+    font-size: 1.6rem;
+    color: var(--amarelo);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+
+  .especiais-sub {
+    font-family: var(--fonte-mono);
+    font-size: 0.65rem;
+    color: var(--texto-fraco);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.2rem;
+  }
+
+  .especiais-secao {
+    font-family: var(--fonte-display);
+    font-size: 1.1rem;
+    color: var(--verde);
+    letter-spacing: 0.06em;
+    margin: 1.2rem 0 0.6rem;
+  }
+
+  .especiais-secao-sub {
+    font-family: var(--fonte-mono);
+    font-size: 0.62rem;
+    color: var(--texto-fraco);
+    letter-spacing: 0.08em;
+    margin-bottom: 0.8rem;
+  }
+
+  .grid-times-esp {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-bottom: 1.2rem;
+  }
+  @media(max-width: 480px) { .grid-times-esp { grid-template-columns: repeat(2, 1fr); } }
+
+  .card-time-esp {
+    background: var(--cinza-medio);
+    border: 2px solid var(--cinza-borda);
+    border-radius: 10px;
+    padding: 10px 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .card-time-esp:hover { border-color: #444; }
+  .card-time-esp.selecionado { border-color: var(--amarelo); background: rgba(255,215,0,0.06); }
+  .card-time-esp img { width: 44px; height: 30px; object-fit: cover; border-radius: 3px; }
+  .card-time-esp-nome { font-family: var(--fonte-corpo); font-size: 0.68rem; font-weight: 700; text-align: center; color: var(--texto); line-height: 1.2; }
+
+  .grid-jogadores-esp {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    margin-bottom: 1.2rem;
+  }
+  @media(max-width: 480px) { .grid-jogadores-esp { grid-template-columns: repeat(2, 1fr); } }
+
+  .card-jogador-esp {
+    background: var(--cinza-medio);
+    border: 2px solid var(--cinza-borda);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .card-jogador-esp:hover { border-color: #444; }
+  .card-jogador-esp.selecionado { border-color: var(--verde); background: rgba(0,165,80,0.06); }
+  .card-jogador-esp img { width: 100%; aspect-ratio: 1; object-fit: cover; object-position: top; background: var(--cinza-borda); display: block; }
+  .card-jogador-esp-info { padding: 7px; }
+  .card-jogador-esp-nome { font-family: var(--fonte-corpo); font-size: 0.72rem; font-weight: 700; color: var(--texto); line-height: 1.2; }
+  .card-jogador-esp-pais { font-family: var(--fonte-mono); font-size: 0.58rem; color: var(--texto-fraco); margin-top: 2px; }
+
+  .especiais-resumo {
+    background: var(--cinza-medio);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .especiais-resumo-item { flex: 1; text-align: center; }
+  .especiais-resumo-label { font-family: var(--fonte-mono); font-size: 0.58rem; color: var(--texto-fraco); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 4px; }
+  .especiais-resumo-valor { font-family: var(--fonte-corpo); font-size: 0.8rem; font-weight: 700; color: var(--amarelo); }
+  .especiais-resumo-divider { width: 1px; background: var(--cinza-borda); align-self: stretch; }
+
+  .btn-salvar-esp {
+    width: 100%;
+    background: var(--verde);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    height: 50px;
+    font-family: var(--fonte-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 1.5rem;
+  }
+  .btn-salvar-esp:hover { background: #00c060; }
+  .btn-salvar-esp:disabled { background: #333; color: var(--texto-fraco); cursor: not-allowed; }
+
+  .especiais-fechado {
+    background: rgba(255,68,68,0.06);
+    border: 1px solid rgba(255,68,68,0.25);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .especiais-fechado-titulo { font-family: var(--fonte-display); font-size: 1.1rem; color: #ff6666; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .especiais-fechado-sub { font-family: var(--fonte-mono); font-size: 0.62rem; color: var(--texto-fraco); }
+
+  .especiais-rev-item {
+    background: var(--cinza-medio);
+    border: 1px solid var(--cinza-borda);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.8rem;
+  }
+  .especiais-rev-nome { color: var(--texto); font-weight: 600; }
+  .especiais-rev-nome.eu { color: var(--amarelo); }
+  .especiais-rev-nome.eu::after { content: ' ✦'; }
+  .especiais-rev-palpite { font-family: var(--fonte-mono); font-size: 0.68rem; color: var(--texto-fraco); text-align: right; line-height: 1.5; }
+
+  .especiais-admin-bar {
+    background: rgba(255,215,0,0.06);
+    border: 1px solid rgba(255,215,0,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .especiais-admin-label { font-family: var(--fonte-mono); font-size: 0.62rem; color: var(--amarelo); letter-spacing: 0.06em; }
+  .especiais-admin-btns { display: flex; gap: 6px; }
+  .btn-esp-admin { padding: 5px 10px; border-radius: 5px; font-family: var(--fonte-mono); font-size: 0.62rem; cursor: pointer; border: 1px solid; transition: all 0.15s; text-transform: uppercase; letter-spacing: 0.05em; }
+  .btn-esp-admin.revelar { border-color: var(--amarelo); color: var(--amarelo); background: rgba(255,215,0,0.06); }
+  .btn-esp-admin.revelar:hover { background: var(--amarelo); color: var(--preto); }
 </style>
 </head>
 <body>
@@ -769,6 +929,12 @@
     <div id="lista-ranking"><div class="loading">CARREGANDO</div></div>
   </div>
 
+  <div id="tela-especiais">
+    <div class="especiais-titulo">⭐ PALPITES ESPECIAIS</div>
+    <div class="especiais-sub">CAMPEÃO DA COPA · ARTILHEIRO · 1.000 PTS CADA</div>
+    <div id="especiais-conteudo"></div>
+  </div>
+
   <div id="tela-admin">
     <div class="admin-titulo">⚙ ADMIN — RESULTADOS</div>
     <div id="admin-form-area"></div>
@@ -780,6 +946,9 @@
     </button>
     <button class="nav-btn" id="nav-ranking" onclick="mostrarTela('ranking')">
       <span class="icone">🏆</span>RANKING
+    </button>
+    <button class="nav-btn" id="nav-especiais" onclick="mostrarTela('especiais')">
+      <span class="icone">⭐</span>ESPECIAIS
     </button>
     <button class="nav-btn" id="nav-admin-btn" onclick="mostrarTela('admin')" style="display:none">
       <span class="icone">⚙</span>ADMIN
@@ -794,6 +963,38 @@
 // CONFIG
 // ══════════════════════════════════════════
 const API_URL = 'https://script.google.com/macros/s/AKfycbyktvXPuYwDh6YQMKVMLkju2mq2Gg8XWtF5ItVpwbo1l7pcqm1JeEoZepwjnTxj9nlpyw/exec';
+
+// ══════════════════════════════════════════
+// ESPECIAIS — DADOS
+// ══════════════════════════════════════════
+const TIMES_QUARTAS = [
+  { nome: 'França',     flag: 'fr' },
+  { nome: 'Marrocos',   flag: 'ma' },
+  { nome: 'Espanha',    flag: 'es' },
+  { nome: 'Bélgica',    flag: 'be' },
+  { nome: 'Noruega',    flag: 'no' },
+  { nome: 'Inglaterra', flag: 'gb-eng' },
+  { nome: 'Argentina',  flag: 'ar' },
+  { nome: 'Suíça',      flag: 'ch' },
+];
+
+const ARTILHEIROS_ESP = [
+  { nome: 'Lionel Messi',    pais: 'Argentina',  foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg/240px-Lionel-Messi-Argentina-2022-FIFA-World-Cup_%28cropped%29.jpg' },
+  { nome: 'Kylian Mbappé',   pais: 'França',     foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/57/2019-07-17_SG_Dynamo_Dresden_vs_Paris_Saint-Germain_by_Sandro_Halank%E2%80%93160_%28cropped%29.jpg/240px-2019-07-17_SG_Dynamo_Dresden_vs_Paris_Saint-Germain_by_Sandro_Halank%E2%80%93160_%28cropped%29.jpg' },
+  { nome: 'Erling Haaland',  pais: 'Noruega',    foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Erling_Haaland_2023.jpg/240px-Erling_Haaland_2023.jpg' },
+  { nome: 'Harry Kane',      pais: 'Inglaterra',  foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Harry_Kane_%28cropped%29.jpg/240px-Harry_Kane_%28cropped%29.jpg' },
+  { nome: 'Jude Bellingham', pais: 'Inglaterra',  foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/Jude_Bellingham_2023_%28cropped%29.jpg/240px-Jude_Bellingham_2023_%28cropped%29.jpg' },
+  { nome: 'Mikel Oyarzabal', pais: 'Espanha',    foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Mikel_Oyarzabal_2022_%28cropped%29.jpg/240px-Mikel_Oyarzabal_2022_%28cropped%29.jpg' },
+  { nome: 'Ousmane Dembélé', pais: 'França',     foto: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Ousmane_Demb%C3%A9l%C3%A9_2023_%28cropped%29.jpg/240px-Ousmane_Demb%C3%A9l%C3%A9_2023_%28cropped%29.jpg' },
+];
+
+const FECHAMENTO_ESPECIAIS = new Date('2026-07-09T17:00:00-03:00');
+const ADMIN_ESPECIAIS_ID = '19';
+
+let campeaoEsp = null;
+let artilheiroEsp = null;
+let todosEspeciais = [];
+let especialRevelado = false;
 
 // ══════════════════════════════════════════
 // DADOS DOS JOGOS
@@ -1145,12 +1346,15 @@ function mostrarTela(tela) {
   telAativa = tela;
   document.getElementById('tela-jogos').style.display = tela === 'jogos' ? 'block' : 'none';
   document.getElementById('tela-ranking').style.display = tela === 'ranking' ? 'block' : 'none';
+  document.getElementById('tela-especiais').style.display = tela === 'especiais' ? 'block' : 'none';
   document.getElementById('tela-admin').style.display = tela === 'admin' ? 'block' : 'none';
   document.getElementById('nav-jogos').classList.toggle('ativo', tela === 'jogos');
   document.getElementById('nav-ranking').classList.toggle('ativo', tela === 'ranking');
+  document.getElementById('nav-especiais').classList.toggle('ativo', tela === 'especiais');
   document.getElementById('nav-admin-btn').classList.toggle('ativo', tela === 'admin');
   if (tela === 'ranking') carregarRanking();
   if (tela === 'admin') renderizarAdmin();
+  if (tela === 'especiais') renderizarEspeciais();
 }
 
 // ══════════════════════════════════════════
@@ -1465,6 +1669,173 @@ function pesoDoJogo(ko) {
   const inicio = new Date('2026-06-11T00:00:00-03:00');
   const d = new Date(ko);
   return 10 + Math.round((d - inicio) / 86400000);
+}
+
+// ══════════════════════════════════════════
+// ESPECIAIS
+// ══════════════════════════════════════════
+async function carregarEspeciais() {
+  const r = await api('buscar_especial');
+  if (r.ok && r.palpite) {
+    campeaoEsp = r.palpite.campeao || null;
+    artilheiroEsp = r.palpite.artilheiro || null;
+  }
+  const rev = localStorage.getItem('especiais_revelado');
+  if (rev === 'true') especialRevelado = true;
+}
+
+async function renderizarEspeciais() {
+  const div = document.getElementById('especiais-conteudo');
+  div.innerHTML = '<div class="loading">CARREGANDO</div>';
+  await carregarEspeciais();
+  div.innerHTML = '';
+
+  const fechado = new Date() >= FECHAMENTO_ESPECIAIS;
+
+  // Barra admin
+  if (String(usuario.id) === ADMIN_ESPECIAIS_ID) {
+    const bar = document.createElement('div');
+    bar.className = 'especiais-admin-bar';
+    bar.innerHTML = `
+      <span class="especiais-admin-label">⚙ CONTROLE ADMIN</span>
+      <div class="especiais-admin-btns">
+        <button class="btn-esp-admin revelar" onclick="revelarEspeciais()">REVELAR PALPITES</button>
+      </div>`;
+    div.appendChild(bar);
+  }
+
+  if (especialRevelado) {
+    await renderizarRevelacaoEsp(div);
+    return;
+  }
+
+  if (fechado) {
+    const aviso = document.createElement('div');
+    aviso.className = 'especiais-fechado';
+    aviso.innerHTML = `<div class="especiais-fechado-titulo">🔒 APOSTAS ENCERRADAS</div><div class="especiais-fechado-sub">Palpites serão revelados após as quartas de final</div>`;
+    div.appendChild(aviso);
+
+    if (campeaoEsp || artilheiroEsp) {
+      const resumo = document.createElement('div');
+      resumo.className = 'especiais-resumo';
+      resumo.innerHTML = `
+        <div class="especiais-resumo-item"><div class="especiais-resumo-label">Seu campeão</div><div class="especiais-resumo-valor">${campeaoEsp || '—'}</div></div>
+        <div class="especiais-resumo-divider"></div>
+        <div class="especiais-resumo-item"><div class="especiais-resumo-label">Seu artilheiro</div><div class="especiais-resumo-valor">${artilheiroEsp || '—'}</div></div>`;
+      div.appendChild(resumo);
+    }
+    return;
+  }
+
+  // Aberto — formulário
+  if (campeaoEsp || artilheiroEsp) {
+    const resumo = document.createElement('div');
+    resumo.className = 'especiais-resumo';
+    resumo.innerHTML = `
+      <div class="especiais-resumo-item"><div class="especiais-resumo-label">Campeão escolhido</div><div class="especiais-resumo-valor" id="esp-res-campeao">${campeaoEsp || '—'}</div></div>
+      <div class="especiais-resumo-divider"></div>
+      <div class="especiais-resumo-item"><div class="especiais-resumo-label">Artilheiro escolhido</div><div class="especiais-resumo-valor" id="esp-res-artilheiro">${artilheiroEsp || '—'}</div></div>`;
+    div.appendChild(resumo);
+  }
+
+  // Times
+  const secT = document.createElement('div');
+  secT.innerHTML = `<div class="especiais-secao">🏆 Campeão da Copa</div><div class="especiais-secao-sub">VALE 1.000 PONTOS · ESCOLHA UMA SELEÇÃO</div>`;
+  div.appendChild(secT);
+
+  const gridT = document.createElement('div');
+  gridT.className = 'grid-times-esp';
+  TIMES_QUARTAS.forEach(time => {
+    const card = document.createElement('div');
+    card.className = 'card-time-esp' + (campeaoEsp === time.nome ? ' selecionado' : '');
+    card.innerHTML = `<img src="https://flagcdn.com/w80/${time.flag}.png" alt="${time.nome}" onerror="this.style.opacity=0.3"><span class="card-time-esp-nome">${time.nome}</span>`;
+    card.addEventListener('click', () => {
+      campeaoEsp = time.nome;
+      document.querySelectorAll('.card-time-esp').forEach(c => c.classList.remove('selecionado'));
+      card.classList.add('selecionado');
+      const el = document.getElementById('esp-res-campeao');
+      if (el) el.textContent = campeaoEsp;
+    });
+    gridT.appendChild(card);
+  });
+  div.appendChild(gridT);
+
+  // Artilheiros
+  const secA = document.createElement('div');
+  secA.innerHTML = `<div class="especiais-secao">⚽ Artilheiro da Copa</div><div class="especiais-secao-sub">VALE 1.000 PONTOS · ESCOLHA UM JOGADOR</div>`;
+  div.appendChild(secA);
+
+  const gridA = document.createElement('div');
+  gridA.className = 'grid-jogadores-esp';
+  ARTILHEIROS_ESP.forEach(jog => {
+    const card = document.createElement('div');
+    card.className = 'card-jogador-esp' + (artilheiroEsp === jog.nome ? ' selecionado' : '');
+    card.innerHTML = `
+      <img src="${jog.foto}" alt="${jog.nome}" onerror="this.style.background='#333';this.style.height='100px'">
+      <div class="card-jogador-esp-info">
+        <div class="card-jogador-esp-nome">${jog.nome}</div>
+        <div class="card-jogador-esp-pais">${jog.pais}</div>
+      </div>`;
+    card.addEventListener('click', () => {
+      artilheiroEsp = jog.nome;
+      document.querySelectorAll('.card-jogador-esp').forEach(c => c.classList.remove('selecionado'));
+      card.classList.add('selecionado');
+      const el = document.getElementById('esp-res-artilheiro');
+      if (el) el.textContent = artilheiroEsp;
+    });
+    gridA.appendChild(card);
+  });
+  div.appendChild(gridA);
+
+  // Botão salvar
+  const btn = document.createElement('button');
+  btn.className = 'btn-salvar-esp';
+  btn.id = 'btn-salvar-esp';
+  btn.textContent = 'SALVAR PALPITES ESPECIAIS';
+  btn.addEventListener('click', salvarEspecial);
+  div.appendChild(btn);
+}
+
+async function salvarEspecial() {
+  if (!campeaoEsp || !artilheiroEsp) { toast('Escolha campeão e artilheiro!', 'erro'); return; }
+  const btn = document.getElementById('btn-salvar-esp');
+  btn.disabled = true; btn.textContent = 'SALVANDO...';
+  const r = await api('salvar_especial', { campeao: campeaoEsp, artilheiro: artilheiroEsp });
+  btn.disabled = false; btn.textContent = 'SALVAR PALPITES ESPECIAIS';
+  if (r.ok) toast('Palpites especiais salvos!', 'ok');
+  else toast('Erro ao salvar', 'erro');
+}
+
+async function revelarEspeciais() {
+  const r = await api('buscar_todos_especiais');
+  if (r.ok) {
+    todosEspeciais = r.palpites;
+    especialRevelado = true;
+    localStorage.setItem('especiais_revelado', 'true');
+    renderizarEspeciais();
+    toast('Palpites revelados!', 'ok');
+  }
+}
+
+async function renderizarRevelacaoEsp(div) {
+  if (!todosEspeciais.length) {
+    const r = await api('buscar_todos_especiais');
+    if (r.ok) todosEspeciais = r.palpites;
+  }
+  const titulo = document.createElement('div');
+  titulo.className = 'especiais-secao';
+  titulo.textContent = '🏆 Palpites de Todos';
+  div.appendChild(titulo);
+
+  todosEspeciais.forEach(p => {
+    const eu = String(p.id) === String(usuario.id);
+    const item = document.createElement('div');
+    item.className = 'especiais-rev-item';
+    item.innerHTML = `
+      <span class="especiais-rev-nome ${eu?'eu':''}">${p.nome}</span>
+      <span class="especiais-rev-palpite">🏆 ${p.campeao || '—'}<br>⚽ ${p.artilheiro || '—'}</span>`;
+    div.appendChild(item);
+  });
 }
 
 // ══════════════════════════════════════════

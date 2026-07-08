@@ -1690,7 +1690,23 @@ async function renderizarEspeciais() {
   await carregarEspeciais();
   div.innerHTML = '';
 
-  const fechado = new Date() >= FECHAMENTO_ESPECIAIS;
+// Contador regressivo
+  if (new Date() < FECHAMENTO_ESPECIAIS) {
+    const cdDiv = document.createElement('div');
+    cdDiv.id = 'esp-countdown';
+    cdDiv.style.cssText = 'font-family:var(--fonte-mono);font-size:0.72rem;color:var(--amarelo);letter-spacing:0.06em;margin-bottom:1rem;text-align:center;';
+    div.appendChild(cdDiv);
+    const tick = () => {
+      const diff = FECHAMENTO_ESPECIAIS - new Date();
+      if (diff <= 0) { cdDiv.textContent = '🔒 Apostas encerradas'; return; }
+      const h = Math.floor(diff / 3600000);
+      const m = Math.floor((diff % 3600000) / 60000);
+      const s = Math.floor((diff % 60000) / 1000);
+      cdDiv.textContent = `⏱ Fecha em ${h}h ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}s`;
+    };
+    tick();
+    setInterval(tick, 1000);
+  };
 
   // Barra admin
   if (String(usuario.id) === ADMIN_ESPECIAIS_ID) {

@@ -1579,14 +1579,19 @@ async function renderizarEspeciais() {
   const div = document.getElementById('especiais-conteudo');
   div.innerHTML = '<div class="loading">CARREGANDO</div>';
 
-  const r = await api('buscar_especial');
-  if (r.ok && r.palpite) {
-    campeaoEsp = r.palpite.campeao || null;
-    artilheiroEsp = r.palpite.artilheiro || null;
+  const [rPalpite, rConfig] = await Promise.all([
+    api('buscar_especial'),
+    api('buscar_config')
+  ]);
+
+  if (rPalpite.ok && rPalpite.palpite) {
+    campeaoEsp = rPalpite.palpite.campeao || null;
+    artilheiroEsp = rPalpite.palpite.artilheiro || null;
   }
 
-  const revLocal = localStorage.getItem('especiais_revelado');
-  if (revLocal === 'true') especialRevelado = true;
+  if (rConfig.ok && rConfig.config && rConfig.config.especiais_revelado === 'true') {
+    especialRevelado = true;
+  }
 
   div.innerHTML = '';
   const fechado = new Date() >= FECHAMENTO_ESPECIAIS;
@@ -1720,13 +1725,13 @@ async function salvarEspecial() {
 }
 
 async function revelarEspeciais() {
-  const r = await api('buscar_todos_especiais');
+  const r = await api('revelar_especiais');
   if (r.ok) {
-    todosEspeciais = r.palpites;
     especialRevelado = true;
-    localStorage.setItem('especiais_revelado', 'true');
     renderizarEspeciais();
-    toast('Palpites revelados!', 'ok');
+    toast('Palpites revelados para todos!', 'ok');
+  } else {
+    toast(r.erro || 'Erro ao revelar', 'erro');
   }
 }
 

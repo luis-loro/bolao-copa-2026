@@ -1579,18 +1579,10 @@ async function renderizarEspeciais() {
   const div = document.getElementById('especiais-conteudo');
   div.innerHTML = '<div class="loading">CARREGANDO</div>';
 
-  const [rPalpite, rConfig] = await Promise.all([
-    api('buscar_especial'),
-    api('buscar_config')
-  ]);
-
+  const rPalpite = await api('buscar_especial');
   if (rPalpite.ok && rPalpite.palpite) {
     campeaoEsp = rPalpite.palpite.campeao || null;
     artilheiroEsp = rPalpite.palpite.artilheiro || null;
-  }
-
-  if (rConfig.ok && rConfig.config && rConfig.config.especiais_revelado === 'true') {
-    especialRevelado = true;
   }
 
   div.innerHTML = '';
@@ -1614,37 +1606,9 @@ async function renderizarEspeciais() {
     setInterval(tick, 1000);
   }
 
-  // Barra admin
-  if (String(usuario.id) === ADMIN_ESPECIAIS_ID) {
-    const bar = document.createElement('div');
-    bar.className = 'especiais-admin-bar';
-    bar.innerHTML = `
-      <span class="especiais-admin-label">⚙ CONTROLE ADMIN</span>
-      <div class="especiais-admin-btns">
-        <button class="btn-esp-admin revelar" onclick="revelarEspeciais()">REVELAR PALPITES</button>
-      </div>`;
-    div.appendChild(bar);
-  }
-
-  if (especialRevelado) {
-    await renderizarRevelacaoEsp(div);
-    return;
-  }
-
+  // Depois do fechamento: mostra palpites de todos automaticamente
   if (fechado) {
-    const aviso = document.createElement('div');
-    aviso.className = 'especiais-fechado';
-    aviso.innerHTML = `<div class="especiais-fechado-titulo">🔒 APOSTAS ENCERRADAS</div><div class="especiais-fechado-sub">Palpites serão revelados após as quartas de final</div>`;
-    div.appendChild(aviso);
-    if (campeaoEsp || artilheiroEsp) {
-      const resumo = document.createElement('div');
-      resumo.className = 'especiais-resumo';
-      resumo.innerHTML = `
-        <div class="especiais-resumo-item"><div class="especiais-resumo-label">Seu campeão</div><div class="especiais-resumo-valor">${campeaoEsp || '—'}</div></div>
-        <div class="especiais-resumo-divider"></div>
-        <div class="especiais-resumo-item"><div class="especiais-resumo-label">Seu artilheiro</div><div class="especiais-resumo-valor">${artilheiroEsp || '—'}</div></div>`;
-      div.appendChild(resumo);
-    }
+    await renderizarRevelacaoEsp(div);
     return;
   }
 

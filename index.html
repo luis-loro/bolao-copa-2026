@@ -1723,18 +1723,23 @@ async function renderizarRevelacaoEsp(div) {
 
   todosEspeciais.forEach(p => {
     const eu = String(p.id) === String(usuario.id);
-    const totalEsp = (p.pts_campeao || 0) + (p.pts_artilheiro || 0);
-    const temPontos = totalEsp > 0;
-    const ptsCampeao = p.pts_campeao > 0 ? `<span style="color:var(--amarelo);font-size:0.62rem;margin-left:4px">+${p.pts_campeao}</span>` : '';
-    const ptsArt = p.pts_artilheiro > 0 ? `<span style="color:var(--amarelo);font-size:0.62rem;margin-left:4px">+${p.pts_artilheiro}</span>` : '';
+    const ptsCampeao = Number(p.pts_campeao) || 0;
+    const ptsArt = Number(p.pts_artilheiro) || 0;
+    const total = ptsCampeao + ptsArt;
+    const corTotal = total > 0 ? 'var(--amarelo)' : 'var(--texto-fraco)';
     const item = document.createElement('div');
     item.className = 'especiais-rev-item';
     item.innerHTML = `
-      <span class="especiais-rev-nome ${eu?'eu':''}">${p.nome}</span>
-      <span class="especiais-rev-palpite">
-        🏆 ${p.campeao || '—'}${ptsCampeao}<br>
-        ⚽ ${p.artilheiro || '—'}${ptsArt}
-      </span>`;
+      <div style="flex:1">
+        <span class="especiais-rev-nome ${eu?'eu':''}">${p.nome}</span>
+        <div style="font-family:var(--fonte-mono);font-size:0.65rem;margin-top:4px;color:var(--texto-fraco)">
+          🏆 ${p.campeao || '—'} · ⚽ ${p.artilheiro || '—'}
+        </div>
+      </div>
+      <div style="text-align:right;font-family:var(--fonte-mono);font-size:0.72rem;color:${corTotal};white-space:nowrap">
+        ${ptsCampeao} + ${ptsArt}<br>
+        <span style="font-size:0.8rem;font-weight:700">${total} pts</span>
+      </div>`;
     div.appendChild(item);
   });
 }

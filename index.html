@@ -1049,18 +1049,6 @@ const DAYS = [
     { id:'QF03', g:'QF', h:'Noruega',   a:'Inglaterra', time:'18h', ko:'2026-07-11T18:00:00-03:00' },
     { id:'QF04', g:'QF', h:'Argentina', a:'Suíça',      time:'22h', ko:'2026-07-11T22:00:00-03:00' },
   ]},
-  { date: '2026-07-14', matches: [
-    { id:'SF01', g:'SF', h:'França', a:'Espanha', time:'16h', ko:'2026-07-14T16:00:00-03:00' },
-  ]},
-  { date: '2026-07-15', matches: [
-    { id:'SF02', g:'SF', h:'Inglaterra', a:'Argentina', time:'16h', ko:'2026-07-15T16:00:00-03:00' },
-  ]},
-  { date: '2026-07-18', matches: [
-    { id:'TP', g:'3°', h:'França', a:'Inglaterra', time:'18h', ko:'2026-07-18T18:00:00-03:00' },
-  ]},
-  { date: '2026-07-19', matches: [
-    { id:'FIN', g:'FINAL', h:'Espanha', a:'Argentina', time:'16h', ko:'2026-07-19T16:00:00-03:00' },
-  ]},
 ];
 const FLAGS = {
   'México':'mx','África do Sul':'za','Coreia do Sul':'kr','Tchéquia':'cz',
@@ -1712,22 +1700,29 @@ async function revelarEspeciais() {
 }
 
 async function renderizarRevelacaoEsp(div) {
-  if (!todosEspeciais.length) {
-    const r = await api('buscar_todos_especiais');
-    if (r.ok) todosEspeciais = r.palpites;
-  }
+  const r = await api('buscar_todos_especiais');
+  if (r.ok) todosEspeciais = r.palpites;
+
   const titulo = document.createElement('div');
   titulo.className = 'especiais-secao';
   titulo.style.marginTop = '0';
   titulo.textContent = '🏆 Palpites de Todos';
   div.appendChild(titulo);
+
   todosEspeciais.forEach(p => {
     const eu = String(p.id) === String(usuario.id);
+    const totalEsp = (p.pts_campeao || 0) + (p.pts_artilheiro || 0);
+    const temPontos = totalEsp > 0;
+    const ptsCampeao = p.pts_campeao > 0 ? `<span style="color:var(--amarelo);font-size:0.62rem;margin-left:4px">+${p.pts_campeao}</span>` : '';
+    const ptsArt = p.pts_artilheiro > 0 ? `<span style="color:var(--amarelo);font-size:0.62rem;margin-left:4px">+${p.pts_artilheiro}</span>` : '';
     const item = document.createElement('div');
     item.className = 'especiais-rev-item';
     item.innerHTML = `
       <span class="especiais-rev-nome ${eu?'eu':''}">${p.nome}</span>
-      <span class="especiais-rev-palpite">🏆 ${p.campeao || '—'}<br>⚽ ${p.artilheiro || '—'}</span>`;
+      <span class="especiais-rev-palpite">
+        🏆 ${p.campeao || '—'}${ptsCampeao}<br>
+        ⚽ ${p.artilheiro || '—'}${ptsArt}
+      </span>`;
     div.appendChild(item);
   });
 }
